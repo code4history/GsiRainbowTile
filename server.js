@@ -6,13 +6,13 @@ app.set("port", process.env.PORT || 3000);
 
 app.use(express.static('public'));
 
-app.get('/tile', async (req, res) => {
+app.get('/tile/:ch/:z/:x/:y', async (req, res) => {
   //各入力値(文字列)を取得
   //https://cyberjapandata.gsi.go.jp/xyz/dem_png/8/227/100.png
-  const zoom = 8
-  const x = 227
-  const y = 100
-  const cycleHeight = 80
+  const zoom = req.params.z != null ? req.params.z : 8
+  const x = req.params.x != null ? req.params.x : 227
+  const y = req.params.y != null ? req.params.y : 100
+  const cycleHeight = req.params.ch != null ? req.params.ch : 80
 
   // 画像読み込み
   const tile_url = `https://cyberjapandata.gsi.go.jp/xyz/dem_png/${zoom}/${x}/${y}.png`
