@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.get('/tile', async (req, res) => {
   //各入力値(文字列)を取得
   //https://cyberjapandata.gsi.go.jp/xyz/dem_png/8/227/100.png
-  /*const zoom = 8
+  const zoom = 8
   const x = 227
   const y = 100
   const cycleHeight = 80
@@ -19,7 +19,7 @@ app.get('/tile', async (req, res) => {
   const image = await loadImage(tile_url)
   const canvas1 = createCanvas(image.width, image.height)
   const context1 = canvas1.getContext('2d')
-  context1.drawImage(image)
+  context1.drawImage(image, 0, 0)
 
   //干渉色のcanvasの準備
   const canvas2 = createCanvas(image.width, image.height)
@@ -102,16 +102,8 @@ app.get('/tile', async (req, res) => {
   context2.putImageData(imageData_iceMap, 0, 0)
   const png_out = canvas2.toBuffer('image/png', {})
 
-  return new Response(png_out, {
-    "status" : 200 ,
-    "headers": new Headers([
-      ['Content-Type', 'image/png']
-    ])
-  })*/
-
-
-  console.log('Request Type:', req.method)
-  res.send(`Hoge ${loadImage} ${createCanvas}`)
+  res.type("png")
+  res.send(png_out)
 });
 
 app.listen(app.get("port"), () => {
