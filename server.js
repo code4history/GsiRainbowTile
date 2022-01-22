@@ -9,7 +9,7 @@ app.listen(app.get("port"), () => {
   console.log(`http://localhost:${app.get("port")}`);
 });
 
-app.use('/tile', function (req, res, next) {
+app.get('/tile', function (req, res, next) {
   console.log('Request Type:', req.method)
   next()
 })
