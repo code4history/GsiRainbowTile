@@ -9,9 +9,10 @@ app.listen(app.get("port"), () => {
   console.log(`http://localhost:${app.get("port")}`);
 });
 
-app.use(express.static("public"));
-
 app.use('/tile', function (req, res, next) {
   console.log('Request Type:', req.method)
   next()
 })
+
+app.use(express.static("public"));
+
