@@ -19,7 +19,6 @@ const tileResponcer = async (req, res, dems, Handler) => {
     // 画像読み込み
     const images = await Promise.all(dems.map(async (dem) => {
       const tile_url = `https://cyberjapandata.gsi.go.jp/xyz/${dem}_png/${zoom}/${x}/${y}.png`
-      console.log(tile_url)
       return loadImage(tile_url)
     }))
     const canvases = images.map(image => createCanvas(image.width, image.height))
@@ -85,7 +84,6 @@ const tileResponcer = async (req, res, dems, Handler) => {
     res.type("png")
     res.send(png_out)
   } catch(e) {
-    console.log(e)
     res.status(404)
     res.send("Not found")
   }
@@ -100,7 +98,7 @@ app.get('/dem5/:ch/:z/:x/:y', async (req, res) => {
 });
 
 app.get('/cont7/:smallheight/:interval/:z/:x/:y', async (req, res) => {
-  tileResponcer(req, res, ["dem"], Contour7Colors)
+  tileResponcer(req, res, ["dem5a"], Contour7Colors)
 });
 
 app.listen(app.get("port"), () => {
