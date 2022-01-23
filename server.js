@@ -101,6 +101,10 @@ app.get('/cont7/:smallheight/:interval/:z/:x/:y', async (req, res) => {
   tileResponcer(req, res, ["dem5a"], Contour7Colors)
 });
 
+app.get('/cont7r/:smallheight/:interval/:z/:x/:y', async (req, res) => {
+  tileResponcer(req, res, ["dem"], Contour7Colors)
+});
+
 app.listen(app.get("port"), () => {
   console.log(`http://localhost:${app.get("port")}`);
 });
