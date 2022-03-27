@@ -105,6 +105,14 @@ app.get('/cont7r/:smallheight/:interval/:z/:x/:y', async (req, res) => {
   tileResponcer(req, res, ["dem"], Contour7Colors)
 });
 
+app.get('/contg/:smallheight/:interval/:z/:x/:y', async (req, res) => {
+  tileResponcer(req, res, ["dem5a"], ContourGrayScale)
+});
+
+app.get('/contgr/:smallheight/:interval/:z/:x/:y', async (req, res) => {
+  tileResponcer(req, res, ["dem"], ContourGrayScale)
+});
+
 app.listen(app.get("port"), () => {
   console.log(`http://localhost:${app.get("port")}`);
 });
@@ -186,5 +194,20 @@ class Contour7Colors {
     pixels_iceMap[base + 1] = color[1] // Green
     pixels_iceMap[base + 2] = color[2] // Blue
     pixels_iceMap[base + 3] = 255 // Alpha
+  }
+}
+
+class ContourGrayScale extends Contour7Colors {
+  constructor(req) {
+    super(req)
+    this.colors = [
+      [83,  83,  83],
+      [126, 126, 126],
+      [157, 157, 157],
+      [176, 176, 176],
+      [196, 196, 196],
+      [212, 212, 212],
+      [231, 231, 231]
+    ]
   }
 }
