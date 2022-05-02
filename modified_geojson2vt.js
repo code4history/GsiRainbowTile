@@ -17,6 +17,7 @@ const modified_geojson2vt = function(geojson, target_zoom, target_x, target_y) {
   const tile = tileIndex.getTile(target_zoom, target_x, target_y);
   if (tile != null) {
     pbfOptions["contour"] = tile;
+    //return vtpbf.fromGeojsonVt(pbfOptions);
     return zlib.gzipSync(vtpbf.fromGeojsonVt(pbfOptions));
   } else {
     return null;

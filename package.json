@@ -37,10 +37,11 @@
     "node": "16.15.0"
   },
   "dependencies": {
-    "express": "^4.17.2",
+    "@mapbox/vt2geojson": "^1.1.5",
     "@turf/helpers": "^6.5.0",
     "canvas": "^2.9.1",
     "d3": "^7.4.4",
+    "express": "^4.17.2",
     "geojson-vt": "^3.2.1",
     "jsdom": "^19.0.0",
     "proj4": "^2.8.0",

@@ -364,6 +364,7 @@ app.get('/contline/:interval/:bold/:z/:x/:y', async (req, res) => {
     const pbf = modified_geojson2mvt(noClip, zoom, x, y)
 
     res.type("application/vnd.mapbox-vector-tile")
+    res.set("Content-Encoding", "gzip")
     res.send(pbf)
   } catch(e) {
     res.status(404)
