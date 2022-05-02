@@ -355,6 +355,6 @@ app.get('/contline/:interval/:bold/:z/:x/:y', async (req, res) => {
     res.send(pbf)
   } catch(e) {
     res.status(404)
-    res.send("Not found")
+    res.send(JSON.stringify(e))
   }
 })
