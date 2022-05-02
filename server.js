@@ -241,14 +241,25 @@ const recursiveKillNull = (array) => {
   }, undefined)
 }
 
-/*app.get('/contour/tilejson/:interval/:bold', async (req, res) => {
+app.get('/contline/:interval/:bold/tilejson', async (req, res) => {
   try {
     const interval = req.params.interval != null ? req.params.interval : 0.5
     const bold = req.params.bold != null ? req.params.bold : 2.5
 
     const json = {
       tilejson: "3.0.0",
-      tiles: [ `` ]
+      tiles: [ `${req.protocol}://${req.get("Host")}/contline/${interval}/${bold}/{z}/{x}/{y}` ],
+      "vector_layers": [
+        {
+          id: "contour",
+          description: "GSI map contour",
+          maxzoom: 15,
+          fields: {
+            height: "Number",
+            bold: "Boolean"
+          }
+        }
+      ]
     }
 
     res.type("application/json")
@@ -257,8 +268,9 @@ const recursiveKillNull = (array) => {
     res.status(404)
     res.send("Not found")
   }
-})*/
+})
 
+// http://localhost:3000/contline/0.5/2.5/15/29082/12837
 app.get('/contline/:interval/:bold/:z/:x/:y', async (req, res) => {
   try {
     const d3 = await import("d3")
