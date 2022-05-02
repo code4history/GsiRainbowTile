@@ -264,12 +264,12 @@ app.get('/contline/:interval/:bold/:z/:x/:y', async (req, res) => {
     const d3 = await import("d3")
     const dems = ["dem5a"]
 
-    const zoom = req.params.z != null ? req.params.z : 15
-    const x = req.params.x != null ? req.params.x : 29084
-    const y = req.params.y != null ? req.params.y : 12841
+    const zoom = req.params.z != null ? parseInt(req.params.z) : 15
+    const x = req.params.x != null ? parseInt(req.params.x) : 29084
+    const y = req.params.y != null ? parseInt(req.params.y) : 12841
 
-    const interval = req.params.interval != null ? req.params.interval : 0.5
-    const bold = req.params.bold != null ? req.params.bold : 2.5
+    const interval = req.params.interval != null ? parseFloat(req.params.interval) : 0.5
+    const bold = req.params.bold != null ? parseFloat(req.params.bold) : 2.5
     const wh = 256 * 3
     const relative_coords = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 0], [0, 1], [1, -1], [1, 0], [1, 1]]
     const canvas = createCanvas(wh, wh)
@@ -355,6 +355,6 @@ app.get('/contline/:interval/:bold/:z/:x/:y', async (req, res) => {
     res.send(pbf)
   } catch(e) {
     res.status(404)
-    res.send(JSON.stringify(e))
+    res.send(e)
   }
 })
