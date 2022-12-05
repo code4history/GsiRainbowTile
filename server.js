@@ -99,7 +99,7 @@ app.get('/tile/:ch/:z/:x/:y', async (req, res) => {
 })
 
 app.get('/dem5/:ch/:z/:x/:y', async (req, res) => {
-  tileResponcer(req, res, ["dem5a","dem5b","dem"], RainbowColor)
+  tileResponcer(req, res, ["dem5a"], RainbowColor)
 })
 
 app.get('/cont7/:smallheight/:interval/:z/:x/:y', async (req, res) => {
